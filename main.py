@@ -1,10 +1,10 @@
-from turtle import title
+
 import discord 
 import heuriger
 import os
 from discord import Embed
 from datetime import date
-
+from keep_alive import keep_alive
 from heuriger import Heuriger, fetch,pretty_fetch
 dateformat = "%d.%m"
 client = discord.Client()
@@ -38,4 +38,5 @@ async def on_message(message):
 @client.event
 async def on_reaction_add(reaction, user):
   pass
+keep_alive()
 client.run(os.getenv("TOKEN"))

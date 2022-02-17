@@ -1,4 +1,4 @@
-from lib2to3.pytree import HUGE
+
 import requests
 from bs4 import BeautifulSoup
 import lxml
@@ -8,7 +8,7 @@ class Heuriger:
         self.adresse = adresse
         self.telefonnummer = telefonnummer
         self.tagenochoffen = nochoffen
-def fetch()-> list[Heuriger]:
+def fetch():
     """
     returns a Heuriger Object
     """

@@ -23,7 +23,7 @@ async def on_message(message):
     
     if not mes.startswith("?"):
         return
-    print(mes)
+    
     if mes.startswith("?heuriger"):
         now = date.today()
         data = fetch()

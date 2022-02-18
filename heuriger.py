@@ -9,6 +9,12 @@ class Heuriger:
         self.telefonnummer = telefonnummer
         self.tagenochoffen = nochoffen
         self.url = url
+        self.telurl = f"https://debug.bgpd.at/heuriger.php?tel={self.telefonnummer.replace(' ', '')}"
+
+
+        
+
+
 def fetch()-> list[Heuriger]:
     """
     returns a Heuriger Object
@@ -32,7 +38,7 @@ def fetch()-> list[Heuriger]:
         nochoffen = data[-1]
         
         if "-" in telefonnummer:
-            telefonnummer = "--"
+            telefonnummer = ""
 
         self = Heuriger(name=name,adresse=adresse,telefonnummer=telefonnummer,nochoffen=nochoffen,url=url)
         rtl.append(self)

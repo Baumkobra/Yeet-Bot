@@ -43,7 +43,10 @@ class Client(discord.Client):
             embed = Embed(title = f"Offene Heuriger am {now.strftime(dateformat)}")
             for heuriger in data:
                 heuriger:Heuriger
-                embed.add_field(name=f"{heuriger.name}",value=f"{heuriger.adresse}\nNoch {heuriger.tagenochoffen} offen\nTel:{heuriger.telefonnummer}\n[website]({heuriger.url})",inline=INLINE)
+                print(heuriger.telurl)
+                tel = f"Tel:[{heuriger.telefonnummer}]({heuriger.telurl})\n" if heuriger.telefonnummer != "" else ""
+                embed.add_field(name=f"{heuriger.name}",value=f"{heuriger.adresse}\nNoch {heuriger.tagenochoffen} offen\n{tel}[website]({heuriger.url})",inline=INLINE)
+               
             await channel.send(embed=embed)
             print(f"{message.guild}|{message.author.name} handling erfolgreich. id: {message.id}" )
 

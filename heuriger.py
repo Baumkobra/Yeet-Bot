@@ -8,12 +8,8 @@ class Heuriger:
         self.adresse = adresse
         self.telefonnummer = telefonnummer
         self.tagenochoffen = nochoffen
-<<<<<<< HEAD:new/heuriger.py
         self.url = url
 def fetch()-> list[Heuriger]:
-=======
-def fetch():
->>>>>>> 70f81096ff47c653f720d83bac28f0fe4e2a2300:heuriger.py
     """
     returns a Heuriger Object
     """
@@ -50,5 +46,5 @@ def pretty_fetch():
     data = fetch()
     txt = ""
     for heuriger in data:
-        txt += f"{heuriger.name} | Adresse: {heuriger.adresse} |noch offen: {heuriger.tagenochoffen} |Tel: {heuriger.telefonnummer} |\n"
+        txt += f"{heuriger.name} | Adresse: {heuriger.adresse} |noch offen: {heuriger.tagenochoffen} |Tel: {heuriger.telefonnummer} | Website: {heuriger.url}\n"
     return txt

@@ -1,12 +1,8 @@
-
 import json
-
-
 import discord 
 import os
 from discord import Embed
 from datetime import date
-
 from heuriger import Heuriger, fetch,pretty_fetch
 from uuid import uuid4
 
@@ -26,13 +22,12 @@ class Client(discord.Client):
         client.kickdict = {}
         for g_key in client.opdict.keys():
             client.kickdict.update({g_key:{}})
-        
 
 
     async def on_message(client,message:discord.Message):
         if message.author == client.user:
             return
-
+            
         mes:str = message.content.lower()
         
         if not mes.startswith("?"):
@@ -119,8 +114,6 @@ class Client(discord.Client):
                         await channel.send(f"kicking {member.display_name} with {len(client.kickdict[g_key][member.id]['approved_by'])} votes")
                         await member.kick()
 
-
-
             except IndexError:
                 print("IndexError")
                 return
@@ -128,6 +121,4 @@ class Client(discord.Client):
             
 
 
-
-
-Client().run(os.getenv("TOKEN"))
+Client().run(os.environ["TOKEN"])

@@ -8,8 +8,11 @@ class Heuriger:
         self.adresse = adresse
         self.telefonnummer = telefonnummer
         self.tagenochoffen = nochoffen
+       
         self.url = url
-        self.telurl = f"https://debug.bgpd.at/heuriger.php?tel={self.telefonnummer.replace(' ', '')}"
+        self.googlemaps = f"https://maps.google.com/?q={self.adresse.replace(' ','+')},Perchtoldsdorf"
+        print(self.googlemaps)
+        self.telurl = f"https://debug.bgpd.at/heuriger.php?tel={ self.telefonnummer.replace(' ', '')}"
 
 
         
@@ -30,7 +33,10 @@ def fetch()-> list[Heuriger]:
         child:BeautifulSoup  
 
         url = child.find("a")["href"] 
-
+        
+     
+        #print(child)
+     
         data = child.text.split(",")
         name = data[0]
         adresse = data[1]
@@ -54,3 +60,6 @@ def pretty_fetch():
     for heuriger in data:
         txt += f"{heuriger.name} | Adresse: {heuriger.adresse} |noch offen: {heuriger.tagenochoffen} |Tel: {heuriger.telefonnummer} | Website: {heuriger.url}\n"
     return txt
+
+if __name__ == "__main__":
+    fetch()

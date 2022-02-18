@@ -5,6 +5,7 @@ from discord import Embed
 from datetime import date
 from heuriger import Heuriger, fetch,pretty_fetch
 from uuid import uuid4
+import colorama
 
 dateformat = "%d.%m"
 INLINE = False
@@ -46,7 +47,7 @@ class Client(discord.Client):
                 
                 tel = f"Tel:[{heuriger.telefonnummer}]({heuriger.telurl})\n" if heuriger.telefonnummer != "" else ""
                 loc = f"[{heuriger.adresse}]({heuriger.googlemaps})" if heuriger.googlemaps != "" else f"{heuriger.adresse}"
-                embed.add_field(name=f"{heuriger.name}",value=f"{loc}\nNoch **{heuriger.tagenochoffen}** offen\n{tel}[website]({heuriger.url})",inline=INLINE)
+                embed.add_field(name=f"{heuriger.name}",value=f"{loc}\nNoch **{heuriger.tagenochoffen}** offen\n{tel}[website]({heuriger.url})\n ",inline=INLINE)
                
             await channel.send(embed=embed)
             print(f"{message.guild}|{message.author.name} handling erfolgreich. id: {message.id}" )

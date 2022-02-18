@@ -11,7 +11,6 @@ class Heuriger:
        
         self.url = url
         self.googlemaps = f"https://maps.google.com/?q={self.adresse.replace(' ','+')},Perchtoldsdorf"
-        print(self.googlemaps)
         self.telurl = f"https://debug.bgpd.at/heuriger.php?tel={ self.telefonnummer.replace(' ', '')}"
 
 

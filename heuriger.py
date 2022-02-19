@@ -1,7 +1,9 @@
 
 import requests
 from bs4 import BeautifulSoup
-import lxml
+
+
+
 class Heuriger:
     def __init__(self, name, adresse,telefonnummer,nochoffen, url) -> None:
         self.name = name
@@ -33,9 +35,6 @@ def fetch()-> list[Heuriger]:
 
         url = child.find("a")["href"] 
         
-     
-        #print(child)
-     
         data = child.text.split(",")
         name = data[0]
         adresse = data[1]

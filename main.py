@@ -47,9 +47,10 @@ class Client(discord.Client):
                 
                 tel = f"Tel:[{heuriger.telefonnummer}]({heuriger.telurl})\n" if heuriger.telefonnummer != "" else ""
                 loc = f"[{heuriger.adresse}]({heuriger.googlemaps})" if heuriger.googlemaps != "" else f"{heuriger.adresse}"
-                embed.add_field(name=f"{heuriger.name}",value=f"{loc}\nNoch **{heuriger.tagenochoffen}** offen\n{tel}[website]({heuriger.url})\n ",inline=INLINE)
+                embed.add_field(name=f"{heuriger.name}",value=f"{loc}\nNoch **{heuriger.tagenochoffen}** offen\n{tel}[website]({heuriger.url})\n -----\n",inline=INLINE)
                
             await channel.send(embed=embed)
+            await message.delete()
             print(f"{message.guild}|{message.author.name} handling erfolgreich. id: {message.id}" )
 
         elif mes.startswith("?banright"):
@@ -60,9 +61,10 @@ class Client(discord.Client):
             print(f"{message.author.display_name} IS the owner")    
            
             if "add" in mes.removeprefix("?banright"):
+                with open("members.json","r") as file:
+                    data =  json.load(file)
+
                 try:
-                    with open("members.json","r") as file:
-                        data =  json.load(file)
                     for member in message.mentions:
                         member:discord.Member
                         
@@ -74,27 +76,30 @@ class Client(discord.Client):
                             await channel.send(f"added new op to {guild.name} op list: {member.display_name}|{member.id.__str__()}")
                         else:
                             await channel.send(f"{member.display_name} is already in op list")
-                    with open("members.json","w") as file:
-                        json.dump(data,file, indent=3)
-                        client.opdict = data
                 except IndexError:
                     print("IndexError")
                     return
+
+                with open("members.json","w") as file:
+                    json.dump(data,file, indent=3)
+                    client.opdict = data
+                
             elif "remove" in mes.removeprefix("?banright"):      
-                try:
-                    with open("members.json", "r") as file:
-                        data = json.load(file)
+                
+                with open("members.json", "r") as file:
+                    data = json.load(file)
+                try:    
                     for member in message.mentions:
                         if member.id in data[g_key]:
                             await channel.send(f"removing member {member.display_name}")
                             data[g_key].remove(member.id)
-        
-                    with open("members.json","w") as file:
-                        json.dump(data,file, indent=3)
-                        client.opdict = data
                 except IndexError:
                     print("IndexError")
                     return
+                with open("members.json","w") as file:
+                    json.dump(data,file, indent=3)
+                    client.opdict = data
+                
                     
         elif mes.startswith("?kick"):
             if message.author.id not in client.opdict[g_key]:

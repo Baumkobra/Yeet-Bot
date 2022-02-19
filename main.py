@@ -33,9 +33,11 @@ class Client(discord.Client):
         
         if not mes.startswith("?"):
             return
+
         guild :discord.Guild= message.guild
         channel:discord.TextChannel = message.channel
         g_key = guild.id.__str__()
+        
         
         if mes.startswith("?heuriger"):
             print(f"{message.guild}|{message.author.name} fragt Heuriger ab. id: {message.id}")

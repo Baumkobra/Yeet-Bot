@@ -19,7 +19,7 @@ class Heuriger:
         
 
 
-def fetch()-> list[Heuriger]:
+def fetch():
     """
     returns a Heuriger Object
     """

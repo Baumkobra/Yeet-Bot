@@ -6,6 +6,7 @@ from datetime import date
 from heuriger import Heuriger, fetch,pretty_fetch
 from uuid import uuid4
 import colorama
+from old.keep_alive import keep_alive
 
 dateformat = "%d.%m"
 INLINE = False
@@ -132,5 +133,5 @@ class Client(discord.Client):
             
             
 
-
+keep_alive()
 Client().run(os.environ["TOKEN"])
